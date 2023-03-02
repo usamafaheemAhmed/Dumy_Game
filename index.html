@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./selectStyle.css">
+    <title>Size and Products</title>
+  </head>
+
+ 
+  <body>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="card shadow-lg" id="border">
+                    <div class="card-body">
+                        <h5 class="text-center">Choose Your Desired Product <img src="./tape.svg" alt="heart" width="30px" height="30px">
+                        </h5>
+                        <div class="col-md-12 p-0 m-0">
+                            <label for="products">Product Name</label>
+                            <div class="selectstyle "  onchange="productRequirements()">
+                                <select>
+                                    <option>Choose...</option>
+                                    <option>Angel 777 Cheerleader Swimsuit Uniform</option>
+                                    <option>Angel Babydoll Lingerie</option>
+                                    <option>ARA ARA~Bodysuit</option>
+                                    <option>Blush Bunny Ears Lingerie</option>
+                                    <option>Burgundy Velvet Lace Sweetheart Lingerie</option>
+                                    <option>Chaotic Nurse Outfit</option>
+                                    <option>Cow Bikini</option>
+                                    <option>Cyber Bunny Set</option>
+                                    <option>Cyber Succubus</option>
+                                    <option>Danger Cyber Cat Bikini</option>
+                                    <option>Danger Cyber Cat Outfit (Top)</option>
+                                    <option>Danger Cyber Cat Outfit (Bottoms)</option>
+                                    <option>Drippin In Milk Dress</option>
+                                    <option>Drippin In Milk Lingerie</option>
+                                    <option>Drippin in Milk Swimsuit</option>
+                                    <option>Hell Rider Succubus Lingerie</option>
+                                    <option>Kawaii Reflective Rainbow Sailor Set</option>
+                                    <option>Latex Succubus Nurse (Top)</option>
+                                    <option>Latex Succubus Nurse (Bottom)</option>
+                                    <option>Love Dessert Cow Maid</option>
+                                    <option>Manga Noises Bikini</option>
+                                    <option>Manga Noises One Piece Swimsuit</option>
+                                    <option>Mesh Manga Noises Dress</option>
+                                    <option>Milk & Cream Maid</option>
+                                    <option>Neko Swimsuit</option>
+                                    <option>Present Bow Lingerie </option>
+                                    <option>Red Metallic Holiday Sleigh</option>
+                                    <option>Reflective Moon Set</option>
+                                    <!-- <option>Reflective Moon Japanese Sailor Uniform Top</option> -->
+                                    <!-- <option>Reflective Moon Japanese Sailor Uniform Bottom</option> -->
+                                    <option>Ribbon Kitten</option>
+                                    <option>Saint/Sinner Sheer Nun Set</option>
+                                    <option>Sheer Succubus Bodysuit</option>
+                                    <option>Soft Spring Cow Set</option>
+                                    <option>Sweet Talk Heart Ruffle Lingerie</option>
+                                    <option>Swimsuit Danger Gamer Bunny Bikini</option>
+                                    <option>Tactical Maid</option>
+                                    <option>Valentine Bunny</option>
+                                    <option>Winter Bunny Heart Rhinestone Bodysuit</option>
+                                  </select>
+                            </div>
+
+                        </div>
+                        <div class="row d-none mt-2" id="productDetails">
+                        <div class="col-md-4">
+                            <label for="bust">Bust</label>
+                            <input type="number" name="bust" id="bust" class="form-control" placeholder="Bust" >
+                        </div>
+                        <div class="col-md-4 mt-2" >
+
+                            <label for="UnderBust">Under Bust</label>
+                            <input type="number" name="UnderBust" id="UnderBust" class="form-control" placeholder="Under Bust" >
+
+                        </div>
+                        <div class="col-md-4 mt-2">
+                            <label for="waist">Waist</label>
+                            <input type="number" name="waist" id="waist" class="form-control" placeholder="Waist" >
+
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <label for="UpperHip">Upper Hip</label>
+                            <input type="number" name="UpperHip" id="UpperHip" class="form-control" placeholder="Upper Hip" >
+                        </div>
+                        <div class="col-md-6 mt-2">
+                            <label for="hip">Hip</label>
+                            <input type="number" name="hip" id="hip" class="form-control" placeholder="Hip" >
+                        </div>
+                        <div class="col-md-12 pt-3">
+                            <span id="recommendedSize" ></span>
+                            <button class="btn btn-block mt-3" onclick="calculate()">Calculate</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="images"> </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg d-none" data-toggle="modal" data-target="#modelId">
+      Launch
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="modelId" tabindex="-1" role="form" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Size Not Found Error!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+
+                    <h5 class="">Please send us a message directly so we can get in touch with you and suggest you the best size possible!</h5>
+                </div>
+                <div class="modal-footer">
+<!--                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <button type="button" class="btn btn-block" onclick="ok()">Send a message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<!-- creating form on zindex 2
+ -->
+
+    <div class="container-fluid d-none" id="form">
+ 
+        <div class="row" style="padding-top: 6%;">
+            <div class="col md-3"></div>
+            <div class="col md-6">
+                <div class="card" id="contactCard">
+                    <div class="card-header">
+                        <h3 class="text-center">Custom Order Form <span class="close" style="color:#ffff" onclick="closer()">&times;</span></h3>
+                
+                    </div>
+                    <div class="card-body">
+                            <h5 class="text-center">Hi, I'm interested in this "<span id="productName"></span>"</h5>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="bustNew">Bust</label>
+                                    <input type="number" name="bustNew" id="bustNew" class="form-control" placeholder="Bust" >
+                                </div>
+                                <div class="col-md-4" >
+                                    <label for="underBustNew">Under Bust</label>
+                                    <input type="number" name="underBustNew" id="underBustNew" class="form-control" placeholder="Under Bust" >
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="waistNew">Waist</label>
+                                    <input type="number" name="waistNew" id="waistNew" class="form-control" placeholder="Waist" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mt-2">
+                                    <label for="upperHipNew">Upper Hip</label>
+                                    <input type="number" name="upperHipNew" id="upperHipNew" class="form-control" placeholder="Upper Hip" >
+                                </div>
+                                <div class="col-md-6 mt-2">
+                                    <label for="hipNew">Hip</label>
+                                    <input type="number" name="hipNew" id="hipNew" class="form-control" placeholder="Hip" >
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <label for="email">Email</label>
+                                    <input type="text" name="email" id="userEmail" class="form-control" placeholder="example@gmail.com" >
+                                </div>
+                            </div>
+                            <h5 class="text-center mt-3">What would be the best size for me</h5>
+                            <button class="btn btn-block mt-3" onclick="done()"> Send</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col md-3"></div>
+
+        </div>
+
+       
+
+    </div>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="./selectScript.js"></script>
+    <script src="./script.js"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
